@@ -26,6 +26,10 @@ function handleFormSubmit(form){
     return false;
 }
 
+function handleLoadout(){
+    
+}
+
 function makeRequest(formObject,type,url){
     return new Promise((resolve,reject)=>{
         const xhr = new XMLHttpRequest();
