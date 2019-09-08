@@ -17,18 +17,88 @@
 <body>
   <h1>Item Manager</h1>
 
-  <div class="dropdown">
-    <button class="btn btn-secondary dropdown-toggle" type="button" id="class-selector" data-toggle="dropdown"
-      aria-haspopup="true" aria-expanded="false">
-      Select Class
-    </button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-      <a class="dropdown-item" href="Titan.html">Titan</a>
-      <a class="dropdown-item" href="Warlock.html">Warlock</a>
-      <a class="dropdown-item" href="Hunter.html">Hunter</a>
+  <div class="container">
+    <div class="row ml-0 pd-3">
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="class-selector" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          Select Class
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="Titan.html">Titan</a>
+          <a class="dropdown-item" href="Warlock.html">Warlock</a>
+          <a class="dropdown-item" href="Hunter.html">Hunter</a>
+        </div>
+      </div>
+    </div>
+    <div class="row pt-3">
+      <div class="col">
+        <table class="table table-dark" id="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">First</th>
+              <th scope="col">Last</th>
+              <th scope="col">Handle</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>@mdo</td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>Jacob</td>
+              <td>Thornton</td>
+              <td>@fat</td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>Larry</td>
+              <td>the Bird</td>
+              <td>@twitter</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col">
+        <form method="post" onsubmit="return handleFormSubmit(this)">
+          <div class="col">
+            <p>Item Type</p>
+            <select class="form-control form-control-lg">
+              <option>Armour-Titan</option>
+              <option>Armour-Warlock</option>
+              <option>Armour-Hunter</option>
+              <option>Weapon</option>
+            </select>
+            <p>Item Name</p>
+            <input type="text" class="form-control mb-1" id="name" placeholder="Item Name">
+            <p>Light Level</p>
+            <input type="number" class="form-control mb-1" id="lightLevel" placeholder="Light Level">
+            <p>Item Type</p>
+            <select class="form-control form-control-lg">
+              <option>Helmet</option>
+              <option>Arms</option>
+              <option>Chest</option>
+              <option>Legs</option>
+              <option>Mark</option>
+              <option>Kinetic</option>
+              <option>Energy</option>
+              <option>Power</option>
+            </select>
+            <p>Primary Perk</p>
+            <input type="text" class="form-control mb-1" id="perkOne" placeholder="Primary Perk">
+            <p>Secondary Perk</p>
+            <input type="text" class="form-control mb-1" id="perkTwo" placeholder="Secondary Perk">
+            <button type="submit" class="btn btn-outline-success col-12" id="submit">Submit</button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
-
 
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
