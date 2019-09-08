@@ -1,10 +1,6 @@
-// function createInv(){
-//     for (let element in inventory){
-
-//     }
-// }
 
 function handleFormSubmit(form){
+    //axample form submit update for relevant data and api
     alert("Form submitted!");
     console.log(form);
     let formObject = {};
@@ -27,7 +23,16 @@ function handleFormSubmit(form){
 }
 
 function handleLoadout(){
-    
+    //Create loadout given items
+    //use hidden values to select class
+
+}
+
+function selectLoadout(num){
+    console.log(num);
+    //document.getElementById(num)
+    //Build table on page for specific loadout
+    //use hidden vars for class specific loadouts store all in 1 table
 }
 
 function makeRequest(formObject,type,url){

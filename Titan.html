@@ -29,6 +29,49 @@
             </div>
         </div>
         <div class="row pt-2">
+            <div class="col">
+                <div class="dropdown pb-2">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="loadout-selector"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Select Loadout
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" id="l1" onclick="selectLoadout(1)">Loadout 1</a>
+                        <a class="dropdown-item" >Loadout 2</a>
+                        <a class="dropdown-item" >Loadout 3</a>
+                    </div>
+                </div>
+                <table class="table table-dark pt-2" id="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Item Name</th>
+                            <th scope="col">Item Type</th>
+                            <th scope="col">Light Level</th>
+                        </tr>
+                    </thead>
+                    <tbody id="invTable">
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Reverie</td>
+                            <td>Helmet</td>
+                            <td>750</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Last word</td>
+                            <td>Kinetic</td>
+                            <td>700</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>Hallowfire Heart</td>
+                            <td>Chest</td>
+                            <td>732</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
             <form method="post" onsubmit="return handleLoadout(this)">
                 <div class="col">
                     <h2>Create Loadout</h2>
@@ -67,54 +110,12 @@
                     <button type="submit" class="btn btn-outline-success col-12" id="submit">Submit</button>
                 </div>
             </form>
-            <div class="col">
-            <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="loadout-selector" data-toggle="dropdown"
-                      aria-haspopup="true" aria-expanded="false">
-                      Select Loadout
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                      <a class="dropdown-item" href="#">Loadout 1</a>
-                      <a class="dropdown-item" href="#">Loadout 2</a>
-                      <a class="dropdown-item" href="#">Loadout 3</a>
-                    </div>
-                  </div>
-            <table class="table table-dark" id="table">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Item Name</th>
-                        <th scope="col">Item Type</th>
-                        <th scope="col">Light Level</th>
-                    </tr>
-                </thead>
-                <tbody id="invTable">
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Reverie</td>
-                        <td>Helmet</td>
-                        <td>750</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Last word</td>
-                        <td>Kinetic</td>
-                        <td>700</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Hallowfire Heart</td>
-                        <td>Chest</td>
-                        <td>732</td>
-                    </tr>
-                </tbody>
-            </table>
-            </div>
         </div>
     </div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="scripts.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
