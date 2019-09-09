@@ -81,7 +81,7 @@
         <form method="post" onsubmit="return handleFormSubmit(this)">
           <div class="col">
             <p>Item Type</p>
-            <select class="form-control form-control-lg">
+            <select id="charClass" class="form-control form-control-lg">
               <option>Armour-Titan</option>
               <option>Armour-Warlock</option>
               <option>Armour-Hunter</option>
@@ -90,9 +90,9 @@
             <p>Item Name</p>
             <input type="text" class="form-control mb-1" id="name" placeholder="Item Name">
             <p>Light Level</p>
-            <input type="number" class="form-control mb-1" id="lightLevel" placeholder="Light Level">
+            <input type="number" class="form-control mb-1" id="light" placeholder="Light Level">
             <p>Item Type</p>
-            <select class="form-control form-control-lg">
+            <select id="slot" class="form-control form-control-lg">
               <option>Helmet</option>
               <option>Arms</option>
               <option>Chest</option>
@@ -102,6 +102,7 @@
               <option>Energy</option>
               <option>Power</option>
             </select>
+            <input type="number" class="form-control mb-1" id="loadoutId">
             <p>Primary Perk</p>
             <input type="text" class="form-control mb-1" id="perkOne" placeholder="Primary Perk">
             <p>Secondary Perk</p>

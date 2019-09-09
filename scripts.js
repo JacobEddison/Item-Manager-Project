@@ -9,12 +9,11 @@ function handleFormSubmit(form){
         formObject[element.id]=element.value;
     }};
     type="POST";
-    url="https://us-central1-qac-sandbox-c347f.cloudfunctions.net/setUser";
+    url="http://localhost:9000/armour";
     console.log(JSON.stringify(formObject));
     makeRequest(formObject,type,url)
         .then(()=>{
             console.log("it worked");
-            location.href="login.html";
         })
         .catch((error)=>{
             console.log("It failed"+error);
