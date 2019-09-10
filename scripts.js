@@ -1,8 +1,34 @@
+const itemSelect = document.getElementById("itemNumber");
+
+function makeRequest(formObject, type, url) {
+    return new Promise((resolve, reject) => {
+        const xhr = new XMLHttpRequest();
+        xhr.onload = () => {
+            if (xhr.status === 200 || xhr.status === 201) {
+                resolve(xhr.response);
+            }
+            else {
+                reject(xhr.status);
+                return xhr.status;
+            }
+        };
+        if (type === "POST") {
+            xhr.open(type, url);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.send(JSON.stringify(formObject));
+        } else if (type === "GET") {
+            xhr.open(type, url);
+            xhr.send();
+        }
+        //console.log(JSON.stringify(formObject));
+    });
+}
 
 function handleFormSubmit(form, url) {
     //axample form submit update for relevant data and api
     alert("Form submitted!");
-    console.log(form);
+    //console.log(form);
+    //itemSelect
     let formObject = {};
     for (let element of form.elements) {
         if (element.value) {
@@ -11,7 +37,7 @@ function handleFormSubmit(form, url) {
     };
     type = "POST";
     //url="http://localhost:9000/armour";
-    console.log(JSON.stringify(formObject));
+    //console.log(JSON.stringify(formObject));
     makeRequest(formObject, type, url)
         .then(() => {
             console.log("it worked");
@@ -30,6 +56,10 @@ function populateItems() {
             console.log("It Worked", data);
             data = (JSON.parse(data));
             for (i = 0; i < data.length; i++) {
+                var option = document.createElement('option');
+                option.value = data[i].id;
+                option.innerText = data[i].name;
+                document.getElementById("itemNumber").appendChild(option);
                 var tr = document.createElement('tr');
                 tr.id = "row" + i;
                 document.getElementById("invTable").appendChild(tr);
@@ -65,33 +95,14 @@ function populateItems() {
         });
 }
 
+function editItem(){
+    //use button and form submit
+}
+
 function selectLoadout(num) {
-    console.log(num);
+    //console.log(num);
     //document.getElementById(num)
     //Build table on page for specific loadout
     //use hidden vars for class specific loadouts store all in 1 table
 }
 
-function makeRequest(formObject, type, url) {
-    return new Promise((resolve, reject) => {
-        const xhr = new XMLHttpRequest();
-        xhr.onload = () => {
-            if (xhr.status === 200 || xhr.status === 201) {
-                resolve(xhr.response);
-            }
-            else {
-                reject(xhr.status);
-                return xhr.status;
-            }
-        };
-        if (type === "POST") {
-            xhr.open(type, url);
-            xhr.setRequestHeader("Content-Type", "application/json");
-            xhr.send(JSON.stringify(formObject));
-        } else if (type === "GET") {
-            xhr.open(type, url);
-            xhr.send();
-        }
-        //console.log(JSON.stringify(formObject));
-    });
-}
