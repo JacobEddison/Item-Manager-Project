@@ -7,8 +7,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+    crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="style.css">
 
   <title>Item Manager</title>
@@ -22,8 +22,8 @@
     </div>
     <div class="row ml-0 pd-3 pt-2">
       <div class="dropdown col-3">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="class-selector" data-toggle="dropdown"
-          aria-haspopup="true" aria-expanded="false">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="class-selector" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">
           Select Class
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -40,73 +40,51 @@
       </div>
     </div>
     <div class="row pt-3">
-      <div class="input-group col-8">
+      <div class="input-group">
         <table class="table table-dark" id="table">
           <form id="checkboxes">
             <thead>
               <tr>
                 <th scope="col">#</th>
                 <th scope="col">Item Name</th>
-                <th scope="col">Item Type</th>
                 <th scope="col">Light Level</th>
+                <th scope="col">Slot</th>
+                <th scope="col">Class</th>
+                <th scope="col">Loadout</th>
               </tr>
             </thead>
             <tbody id="invTable">
-              <tr>
-                <th scope="row">1</th>
-                <td>Reverie</td>
-                <td>Helmet</td>
-                <td>750</td>
-                <td><input type="checkbox"></td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Last word</td>
-                <td>Kinetic</td>
-                <td>700</td>
-                <td><input type="checkbox"></td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td>Hallowfire Heart</td>
-                <td>Chest</td>
-                <td>732</td>
-                <td><input type="checkbox"></td>
-              </tr>
             </tbody>
           </form>
         </table>
       </div>
-      <div class="col-4">
-        <form method="post" onsubmit="return handleFormSubmit(this)">
+      <div class="row pt-4">
+        <form method="post" onsubmit="return handleFormSubmit(this, 'http://localhost:9000/armour')">
           <div class="col">
             <p>Item Type</p>
-            <select id="charClass" class="form-control form-control-lg">
-              <option>Armour-Titan</option>
-              <option>Armour-Warlock</option>
-              <option>Armour-Hunter</option>
-              <option>Weapon</option>
+            <select id="charClass" class="form-control form-control-lg mb-1">
+              <option>Titan</option>
+              <option>Warlock</option>
+              <option>Hunter</option>
             </select>
             <p>Item Name</p>
             <input type="text" class="form-control mb-1" id="name" placeholder="Item Name">
             <p>Light Level</p>
             <input type="number" class="form-control mb-1" id="light" placeholder="Light Level">
             <p>Item Type</p>
-            <select id="slot" class="form-control form-control-lg">
+            <select id="slot" class="form-control form-control-lg mb-1">
               <option>Helmet</option>
               <option>Arms</option>
               <option>Chest</option>
               <option>Legs</option>
               <option>Mark</option>
-              <option>Kinetic</option>
-              <option>Energy</option>
-              <option>Power</option>
             </select>
+            <p>Loadout Id</p>
             <input type="number" class="form-control mb-1" id="loadoutId">
             <p>Primary Perk</p>
             <input type="text" class="form-control mb-1" id="perkOne" placeholder="Primary Perk">
             <p>Secondary Perk</p>
-            <input type="text" class="form-control mb-1" id="perkTwo" placeholder="Secondary Perk">
+            <input type="text" class="form-control mb-2" id="perkTwo" placeholder="Secondary Perk">
             <button type="submit" class="btn btn-outline-success col-12" id="submit">Submit</button>
           </div>
         </form>
@@ -117,14 +95,11 @@
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="scripts.js"></script>
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
     crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
     crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
 </body>
 

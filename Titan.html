@@ -72,40 +72,28 @@
                     </tbody>
                 </table>
             </div>
-            <form method="post" onsubmit="return handleLoadout(this)">
+            <form method="post" onsubmit="return handleFormSubmit(this,'http://localhost:9000/loadout')">
                 <div class="col">
                     <h2>Create Loadout</h2>
                     <p>Helmet</p>
-                    <select class="form-control form-control-lg">
-                        <option>helmet1</option>
+                    <select type="number" id="helmetId" class="form-control form-control-lg">
+                        <option>1</option>
                     </select>
                     <p>Arms</p>
-                    <select class="form-control form-control-lg">
-                        <option>Arms 1</option>
+                    <select type="number" id="armId" class="form-control form-control-lg">
+                        <option>2</option>
                     </select>
                     <p>Chest</p>
-                    <select class="form-control form-control-lg">
-                        <option>Chest 1</option>
+                    <select type="number" id="chestId" class="form-control form-control-lg">
+                        <option>3</option>
                     </select>
                     <p>Legs</p>
-                    <select class="form-control form-control-lg">
-                        <option>Legs 1</option>
+                    <select type="number" id="legId" class="form-control form-control-lg">
+                        <option>4</option>
                     </select>
                     <p>Mark</p>
-                    <select class="form-control form-control-lg">
-                        <option>Mark 1</option>
-                    </select>
-                    <p>Kinetic</p>
-                    <select class="form-control form-control-lg">
-                        <option>Kinetic 1</option>
-                    </select>
-                    <p>Energy</p>
-                    <select class="form-control form-control-lg">
-                        <option>Energy 1</option>
-                    </select>
-                    <p>Power</p>
-                    <select class="form-control form-control-lg">
-                        <option>Power 1</option>
+                    <select type="number" id="markId" class="form-control form-control-lg">
+                        <option>5</option>
                     </select>
                     <button type="submit" class="btn btn-outline-success col-12" id="submit">Submit</button>
                 </div>

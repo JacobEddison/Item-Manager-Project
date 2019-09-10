@@ -1,54 +1,95 @@
 
-function handleFormSubmit(form){
+function handleFormSubmit(form, url) {
     //axample form submit update for relevant data and api
     alert("Form submitted!");
     console.log(form);
     let formObject = {};
-    for (let element of form.elements){
-        if (element.value){
-        formObject[element.id]=element.value;
-    }};
-    type="POST";
-    url="http://localhost:9000/armour";
+    for (let element of form.elements) {
+        if (element.value) {
+            formObject[element.id] = element.value;
+        }
+    };
+    type = "POST";
+    //url="http://localhost:9000/armour";
     console.log(JSON.stringify(formObject));
-    makeRequest(formObject,type,url)
-        .then(()=>{
+    makeRequest(formObject, type, url)
+        .then(() => {
             console.log("it worked");
         })
-        .catch((error)=>{
-            console.log("It failed"+error);
+        .catch((error) => {
+            console.log("It failed" + error);
         })
     return false;
 }
 
-function handleLoadout(){
-    //Create loadout given items
-    //use hidden values to select class
-
+function populateItems() {
+    type = "GET";
+    url = "http://localhost:9000/armour";
+    makeRequest("", type, url)
+        .then((data) => {
+            console.log("It Worked", data);
+            data = (JSON.parse(data));
+            for (i = 0; i < data.length; i++) {
+                var tr = document.createElement('tr');
+                tr.id = "row" + i;
+                document.getElementById("invTable").appendChild(tr);
+                var th = document.createElement('th');
+                for (j = 0; j < 6; j++) {
+                    var td = document.createElement('td');
+                    switch (j) {
+                        case 0:
+                            td.innerText = data[i].id;
+                            break;
+                        case 1:
+                            td.innerText = data[i].name;
+                            break;
+                        case 2:
+                            td.innerText = data[i].light;
+                            break;
+                        case 3:
+                            td.innerText = data[i].slot;
+                            break;
+                        case 4:
+                            td.innerText = data[i].charClass;
+                            break;
+                        case 5:
+                            td.innerText = data[i].loadoutId;
+                            break;
+                    }
+                    document.getElementById("row" + i).appendChild(td);
+                }
+            }
+        })
+        .catch((error) => {
+            console.log("It Failed", error);
+        });
 }
 
-function selectLoadout(num){
+function selectLoadout(num) {
     console.log(num);
     //document.getElementById(num)
     //Build table on page for specific loadout
     //use hidden vars for class specific loadouts store all in 1 table
 }
 
-function makeRequest(formObject,type,url){
-    return new Promise((resolve,reject)=>{
+function makeRequest(formObject, type, url) {
+    return new Promise((resolve, reject) => {
         const xhr = new XMLHttpRequest();
         xhr.onload = () => {
-            if (xhr.status ==200) {
-                resolve(xhr.response);}
-            else {reject(xhr.status);    
-                return xhr.status;}
+            if (xhr.status === 200 || xhr.status === 201) {
+                resolve(xhr.response);
+            }
+            else {
+                reject(xhr.status);
+                return xhr.status;
+            }
         };
-        if (type=="POST"){
-            xhr.open(type,url);
-            xhr.setRequestHeader("Content-Type","application/json");
+        if (type === "POST") {
+            xhr.open(type, url);
+            xhr.setRequestHeader("Content-Type", "application/json");
             xhr.send(JSON.stringify(formObject));
-        } else if (type=="GET"){
-            xhr.open(type,url);
+        } else if (type === "GET") {
+            xhr.open(type, url);
             xhr.send();
         }
         //console.log(JSON.stringify(formObject));
