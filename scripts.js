@@ -1,4 +1,5 @@
 const itemSelect = document.getElementById("itemNumber");
+const loadoutSelect = document.getElementById("loadoutDropdown");
 
 function makeRequest(formObject, type, url) {
     return new Promise((resolve, reject) => {
@@ -133,6 +134,7 @@ function populateLoadout(){
                 option.setAttribute("class", "dropdown-item");
                 option.setAttribute("onclick", "");
                 option.setAttribute("id", "l"+data[i].id);
+                option.setAttribute("value", data[i].loadoutId);
                 option.innerText = "Loadout "+data[i].id;
                 document.getElementById("loadoutDropdown").appendChild(option);
 
@@ -143,7 +145,31 @@ function populateLoadout(){
 }
 
 function populateLoadoutTable(){
-    
+    type = "GET";
+    url = "http://localhost:9000/loadout";
+    makeRequest("",type,url)
+        .then((data) => {
+            data = (JSON.parse(data));
+            for (let i in data){
+                var row = document.createElement('tr');
+                row.id = 'row'+i;
+                row.value = data[i].id;
+                document.getElementById("loadoutTable").appendChild(row);
+            }
+        })
+        .catch((error) => {
+            console.log("It failed",error);
+        })
+    // type = "GET";
+    // url = "http://localhost:9000/armour"
+    // makeRequest("",type,url)
+    //     .then((data) => {
+    //         data = (JSON.parse(data));
+    //         for (let i in data){
+                
+    //         }
+
+    //     })
 }
 
 function editItem() {
