@@ -13,7 +13,7 @@
     <title>Titan</title>
 </head>
 
-<body>
+<body onload="return loadoutForm()">
     <div class="container">
         <h1>Titan</h1>
         <div class="dropdown">
@@ -76,24 +76,19 @@
                 <div class="col">
                     <h2>Create Loadout</h2>
                     <p>Helmet</p>
-                    <select type="number" id="helmetId" class="form-control form-control-lg">
-                        <option>1</option>
+                    <select type="number" id="HelmetIdForm" class="form-control form-control-lg">
                     </select>
                     <p>Arms</p>
-                    <select type="number" id="armId" class="form-control form-control-lg">
-                        <option>2</option>
+                    <select type="number" id="ArmIdForm" class="form-control form-control-lg">
                     </select>
                     <p>Chest</p>
-                    <select type="number" id="chestId" class="form-control form-control-lg">
-                        <option>3</option>
+                    <select type="number" id="ChestIdForm" class="form-control form-control-lg">
                     </select>
                     <p>Legs</p>
-                    <select type="number" id="legId" class="form-control form-control-lg">
-                        <option>4</option>
+                    <select type="number" id="LegIdForm" class="form-control form-control-lg">
                     </select>
                     <p>Mark</p>
-                    <select type="number" id="markId" class="form-control form-control-lg">
-                        <option>5</option>
+                    <select type="number" id="MarkIdForm" class="form-control form-control-lg">
                     </select>
                     <button type="submit" class="btn btn-outline-success col-12" id="submit">Submit</button>
                 </div>

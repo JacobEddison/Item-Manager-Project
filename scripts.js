@@ -103,6 +103,24 @@ function populateItems() {
         });
 }
 
+function loadoutForm(){
+    type = "GET";
+    url = "http://localhost:9000/armour";
+    makeRequest("",type,url)
+        .then((data) => {
+            console.log("It worked",data)
+            data = (JSON.parse(data));
+            for (let i in data){
+                var option = document.createElement('option');
+                loadoutSlot = data[i].slot+"IdForm";
+                console.log(loadoutSlot);
+                option.value = data[i].id;
+                option.innerText = data[i].name+", "+data[i].light;
+                document.getElementById(loadoutSlot).appendChild(option);
+            }
+        })
+}
+
 function editItem(){
     //use button and form submit
 }
