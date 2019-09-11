@@ -153,23 +153,26 @@ function populateLoadoutTable(){
             for (let i in data){
                 var row = document.createElement('tr');
                 row.id = 'row'+i;
-                row.value = data[i].id;
+                //row.value = data[i].id;
                 document.getElementById("loadoutTable").appendChild(row);
             }
         })
         .catch((error) => {
             console.log("It failed",error);
         })
-    // type = "GET";
-    // url = "http://localhost:9000/armour"
-    // makeRequest("",type,url)
-    //     .then((data) => {
-    //         data = (JSON.parse(data));
-    //         for (let i in data){
-                
-    //         }
+        //itterate build table not sure how im tired
+    type = "GET";
+    url = "http://localhost:9000/armour"
+    makeRequest("",type,url)
+        .then((data) => {
+            data = (JSON.parse(data));
+            for (let i in data){
+                for (let j in 100){
+                    var td = createElement('tr');
+                }
+            }
 
-    //     })
+        })
 }
 
 function editItem() {
