@@ -19,6 +19,10 @@ function makeRequest(formObject, type, url) {
         } else if (type === "GET") {
             xhr.open(type, url);
             xhr.send();
+        } else if (type === "PUT"){
+            xhr.open(type,url);
+            xhr.setRequestHeader("Content-Type","application/json");
+            xhr.send(JSON.stringify(formObject));
         }
         //console.log(JSON.stringify(formObject));
     });
@@ -27,24 +31,28 @@ function makeRequest(formObject, type, url) {
 function handleFormSubmit(form, url) {
     //axample form submit update for relevant data and api
     alert("Form submitted!");
-    //console.log(form);
-    //itemSelect
     let formObject = {};
     for (let element of form.elements) {
         if (element.value) {
             formObject[element.id] = element.value;
         }
     };
-    type = "POST";
-    //url="http://localhost:9000/armour";
-    //console.log(JSON.stringify(formObject));
+    if (itemSelect.value === "n"){
+        type = "POST";
+    } else {
+        type = "PUT";
+        url = url+"/"+itemSelect.value;
+        console.log(url);
+    };
     makeRequest(formObject, type, url)
         .then(() => {
             console.log("it worked");
+            location.reload(true);
         })
         .catch((error) => {
             console.log("It failed" + error);
         })
+    
     return false;
 }
 

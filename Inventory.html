@@ -14,12 +14,13 @@
   <title>Item Manager</title>
 </head>
 
-<body>
+<body onload="populateItems()">
 
   <div class="container">
     <div class="row ml-0">
       <h1>Item Manager</h1>
     </div>
+
     <div class="row ml-0 pd-3 pt-2">
       <div class="dropdown col-3">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="class-selector" data-toggle="dropdown" aria-haspopup="true"
@@ -33,61 +34,61 @@
         </div>
       </div>
     </div>
-    <div class="row pt-3">
-      <div class="input-group">
-        <table class="table table-dark" id="table">
-          <form id="checkboxes">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Item Name</th>
-                <th scope="col">Light Level</th>
-                <th scope="col">Slot</th>
-                <th scope="col">Class</th>
-                <th scope="col">Loadout</th>
-              </tr>
-            </thead>
-            <tbody id="invTable">
-            </tbody>
-          </form>
-        </table>
-      </div>
-      <div class="row pt-4">
-        <select id="itemNumber" class="dropdown-toggle">
-            <option id="n">Create New Item</option>
+
+    <div class="row pt-3 input-group">
+      <table class="table table-dark" id="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Item Name</th>
+              <th scope="col">Light Level</th>
+              <th scope="col">Slot</th>
+              <th scope="col">Class</th>
+              <th scope="col">Loadout</th>
+            </tr>
+          </thead>
+          <tbody id="invTable">
+          </tbody>
+      </table>
+    </div>
+
+    <div class="row pt-4 form-control-lg mb-2 ml-0">
+      <p class="form-control-lg">Select Item</p>
+      <select id="itemNumber" class="dropdown-toggle form-control-lg">
+            <option value="n">Create New Item</option>
         </select>
-      </div>
-      <div class="row pt-5">
-        <form method="post" onsubmit="return handleFormSubmit(this, 'http://localhost:9000/armour')">
-          <div class="col">
-            <p>Item Type</p>
-            <select id="charClass" class="form-control form-control-lg mb-1">
+    </div>
+
+    <div class="row pt-5 form-control-lg mt-3 ml-0">
+      <form method="post" onsubmit="return handleFormSubmit(this, 'http://localhost:9000/armour')">
+        <div class="col">
+          <p>Item Type</p>
+          <select id="charClass" class="form-control form-control-lg mb-1">
               <option>Titan</option>
               <option>Warlock</option>
               <option>Hunter</option>
             </select>
-            <p>Item Name</p>
-            <input type="text" class="form-control mb-1" id="name" placeholder="Item Name">
-            <p>Light Level</p>
-            <input type="number" class="form-control mb-1" id="light" placeholder="Light Level">
-            <p>Item Type</p>
-            <select id="slot" class="form-control form-control-lg mb-1">
+          <p>Item Name</p>
+          <input type="text" class="form-control mb-1" id="name" placeholder="Item Name">
+          <p>Light Level</p>
+          <input type="number" class="form-control mb-1" id="light" placeholder="Light Level">
+          <p>Item Type</p>
+          <select id="slot" class="form-control form-control-lg mb-1">
               <option>Helmet</option>
               <option>Arms</option>
               <option>Chest</option>
               <option>Legs</option>
               <option>Mark</option>
             </select>
-            <p>Loadout Id</p>
-            <input type="number" class="form-control mb-1" id="loadoutId">
-            <p>Primary Perk</p>
-            <input type="text" class="form-control mb-1" id="perkOne" placeholder="Primary Perk">
-            <p>Secondary Perk</p>
-            <input type="text" class="form-control mb-2" id="perkTwo" placeholder="Secondary Perk">
-            <button type="submit" class="btn btn-outline-success col-12" id="submit">Submit</button>
-          </div>
-        </form>
-      </div>
+          <p>Loadout Id</p>
+          <input type="number" class="form-control mb-1" id="loadoutId">
+          <p>Primary Perk</p>
+          <input type="text" class="form-control mb-1" id="perkOne" placeholder="Primary Perk">
+          <p>Secondary Perk</p>
+          <input type="text" class="form-control mb-2" id="perkTwo" placeholder="Secondary Perk">
+          <button type="submit" class="btn btn-outline-success col-12" id="submit">Submit</button>
+        </div>
+      </form>
     </div>
   </div>
 
