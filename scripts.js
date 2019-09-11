@@ -19,9 +19,9 @@ function makeRequest(formObject, type, url) {
         } else if (type === "GET") {
             xhr.open(type, url);
             xhr.send();
-        } else if (type === "PUT"){
-            xhr.open(type,url);
-            xhr.setRequestHeader("Content-Type","application/json");
+        } else if (type === "PUT") {
+            xhr.open(type, url);
+            xhr.setRequestHeader("Content-Type", "application/json");
             xhr.send(JSON.stringify(formObject));
         }
         //console.log(JSON.stringify(formObject));
@@ -37,11 +37,11 @@ function handleFormSubmit(form, url) {
             formObject[element.id] = element.value;
         }
     };
-    if (itemSelect.value === "n"){
+    if (itemSelect.value === "n") {
         type = "POST";
     } else {
         type = "PUT";
-        url = url+"/"+itemSelect.value;
+        url = url + "/" + itemSelect.value;
         console.log(url);
     };
     makeRequest(formObject, type, url)
@@ -52,7 +52,7 @@ function handleFormSubmit(form, url) {
         .catch((error) => {
             console.log("It failed" + error);
         })
-    
+
     return false;
 }
 
@@ -103,25 +103,25 @@ function populateItems() {
         });
 }
 
-function loadoutForm(){
+function loadoutForm() {
     type = "GET";
     url = "http://localhost:9000/armour";
-    makeRequest("",type,url)
+    makeRequest("", type, url)
         .then((data) => {
-            console.log("It worked",data)
+            console.log("It worked", data)
             data = (JSON.parse(data));
-            for (let i in data){
+            for (let i in data) {
                 var option = document.createElement('option');
-                loadoutSlot = data[i].slot+"IdForm";
+                loadoutSlot = data[i].slot + "IdForm";
                 console.log(loadoutSlot);
                 option.value = data[i].id;
-                option.innerText = data[i].name+", "+data[i].light;
+                option.innerText = data[i].name + ", " + data[i].light;
                 document.getElementById(loadoutSlot).appendChild(option);
             }
         })
 }
 
-function editItem(){
+function editItem() {
     //use button and form submit
 }
 
