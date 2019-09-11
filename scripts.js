@@ -121,6 +121,31 @@ function loadoutForm() {
         })
 }
 
+function populateLoadout(){
+    type = "GET";
+    url = "http://localhost:9000/loadout"
+    makeRequest("",type,url)
+        .then((data) => {
+            console.log("It worked",data);
+            data = (JSON.parse(data));
+            for (let i in data){
+                var option = document.createElement('a');
+                option.setAttribute("class", "dropdown-item");
+                option.setAttribute("onclick", "");
+                option.setAttribute("id", "l"+data[i].id);
+                option.innerText = "Loadout "+data[i].id;
+                document.getElementById("loadoutDropdown").appendChild(option);
+
+
+            }
+
+        })
+}
+
+function populateLoadoutTable(){
+    
+}
+
 function editItem() {
     //use button and form submit
 }
