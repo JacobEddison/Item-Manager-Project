@@ -45,6 +45,7 @@ function handleFormSubmit(form, url) {
         url = url + "/" + itemSelect.value;
         console.log(url);
     };
+    console.log(type);
     makeRequest(formObject, type, url)
         .then(() => {
             console.log("it worked");
@@ -57,12 +58,68 @@ function handleFormSubmit(form, url) {
     return false;
 }
 
+function loadoutFormSubmit(form, url) {
+    //axample form submit update for relevant data and api
+    alert("Form submitted!");
+    let formObject = {};
+    for (let element of form.elements) {
+        if (element.value) {
+            formObject[element.id] = element.value;
+        }
+    };
+    if (loadoutSelect.value === "n") {
+        type = "POST";
+    } else {
+        type = "PUT";
+        url = url + "/" + loadoutSelect.value;
+        console.log(url);
+    };
+    console.log(type);
+    makeRequest(formObject, type, url)
+        .then((data) => {
+            console.log("it worked 2", data);
+            location.reload(true);
+            data = JSON.parse(data);
+            lid = data.loadoutId;
+            updateItemInLoadout(form,lid);
+        })
+        .catch((error) => {
+            console.log("It failed" + error);
+        })
+
+    return false;
+}
+
+function updateItemInLoadout(form, lid){
+    for (let i of form.elements){
+        if (i.value){
+            type = "GET";
+            url = "http://localhost:9000/armour/" + i.value;
+            console.log(i.value);
+            makeRequest("",type,url)
+                .then((data) => {
+                    data = JSON.parse(data);
+                    console.log(data);
+                    data.loadoutId = lid;
+                    type = "PUT";
+                    console.log(data.loadoutId);
+                    makeRequest(data,type,url)
+                        .then((data) => {
+                            console.log("It worked 3",data);
+                        })
+                })
+        }
+    }
+
+}
+
+
 function populateItems() {
     type = "GET";
     url = "http://localhost:9000/armour";
     makeRequest("", type, url)
         .then((data) => {
-            console.log("It Worked", data);
+            //console.log("It Worked", data);
             data = (JSON.parse(data));
             for (i = 0; i < data.length; i++) {
                 var option = document.createElement('option');
@@ -109,12 +166,12 @@ function loadoutForm() {
     url = "http://localhost:9000/armour";
     makeRequest("", type, url)
         .then((data) => {
-            console.log("It worked", data)
+            //console.log("It worked", data)
             data = (JSON.parse(data));
             for (let i in data) {
                 var option = document.createElement('option');
-                loadoutSlot = data[i].slot + "IdForm";
-                console.log(loadoutSlot);
+                loadoutSlot = data[i].slot.toLowerCase() + "Id";
+                //console.log(loadoutSlot);
                 option.value = data[i].id;
                 option.innerText = data[i].name + ", " + data[i].light;
                 document.getElementById(loadoutSlot).appendChild(option);
@@ -127,14 +184,15 @@ function populateLoadout(){
     url = "http://localhost:9000/loadout"
     makeRequest("",type,url)
         .then((data) => {
-            console.log("It worked",data);
+            //console.log("It worked",data);
             data = (JSON.parse(data));
             for (let i in data){
-                var option = document.createElement('a');
-                option.setAttribute("class", "dropdown-item");
-                option.setAttribute("onclick", "");
-                option.setAttribute("id", "l"+data[i].id);
-                option.setAttribute("value", data[i].loadoutId);
+                var option = document.createElement('option');
+                //option.setAttribute("class", "dropdown-item");
+                //option.setAttribute("onclick", "");
+                //option.setAttribute("id", "l"+data[i].id);
+                option.id = data[i].id;
+                option.value = data[i].id;
                 option.innerText = "Loadout "+data[i].id;
                 document.getElementById("loadoutDropdown").appendChild(option);
 

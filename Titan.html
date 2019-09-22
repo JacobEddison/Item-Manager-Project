@@ -11,6 +11,7 @@
         crossorigin="anonymous">
 
     <title>Titan</title>
+
 </head>
 
 <body onload="return loadoutForm(), populateLoadout()">
@@ -30,15 +31,6 @@
         </div>
         <div class="row pt-2">
             <div class="col">
-                <div class="dropdown pb-2">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="loadout-selector" data-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false">
-                        Select Loadout
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="loadoutDropdown">
-                        <a class="dropdown-item" id="l1" onclick="">Loadout 1</a>
-                    </div>
-                </div>
                 <table class="table table-dark pt-2" id="table">
                     <thead>
                         <tr>
@@ -52,23 +44,31 @@
                     </tbody>
                 </table>
             </div>
-            <form method="post" onsubmit="return handleFormSubmit(this,'http://localhost:9000/loadout')">
+
+            <div class="row pt-4 form-control-lg mb-2 ml-0">
+                <p class="form-control-lg">Select Item</p>
+                <select id="loadoutDropdown" class="dropdown-toggle form-control-lg">
+                      <option value="n">Create New Item</option>
+                </select>
+            </div>
+
+            <form method="post" onsubmit="return loadoutFormSubmit(this,'http://localhost:9000/loadout')">
                 <div class="col">
                     <h2>Create Loadout</h2>
                     <p>Helmet</p>
-                    <select type="number" id="helmetIdForm" class="form-control form-control-lg">
+                    <select type="number" id="helmetId" class="form-control form-control-lg">
                     </select>
                     <p>Arms</p>
-                    <select type="number" id="armIdForm" class="form-control form-control-lg">
+                    <select type="number" id="armId" class="form-control form-control-lg">
                     </select>
                     <p>Chest</p>
-                    <select type="number" id="chestIdForm" class="form-control form-control-lg">
+                    <select type="number" id="chestId" class="form-control form-control-lg">
                     </select>
                     <p>Legs</p>
-                    <select type="number" id="legIdForm" class="form-control form-control-lg">
+                    <select type="number" id="legId" class="form-control form-control-lg">
                     </select>
                     <p>Mark</p>
-                    <select type="number" id="markIdForm" class="form-control form-control-lg">
+                    <select type="number" id="markId" class="form-control form-control-lg">
                     </select>
                     <button type="submit" class="btn btn-outline-success col-12" id="submit">Submit</button>
                 </div>
