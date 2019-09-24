@@ -15,7 +15,7 @@ function makeRequest(formObject, type, url) {
         };
         if (type === "POST") {
             xhr.open(type, url);
-            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.setRequestHeader("Content-Type", "application/json", "Access-Control-Allow-Origin");
             xhr.send(JSON.stringify(formObject));
         } else if (type === "GET") {
             xhr.open(type, url);
@@ -94,7 +94,7 @@ function updateItemInLoadout(form, lid){
     for (let i of form.elements){
         if (i.value){
             type = "GET";
-            url = "http://localhost:9000/armour/" + i.value;
+            url = "http://35.189.78.116:9000/armour/" + i.value;
             console.log(i.value);
             makeRequest("",type,url)
                 .then((data) => {
@@ -116,7 +116,7 @@ function updateItemInLoadout(form, lid){
 
 function populateItems() {
     type = "GET";
-    url = "http://localhost:9000/armour";
+    url = "http://35.189.78.116:9000/armour";
     makeRequest("", type, url)
         .then((data) => {
             //console.log("It Worked", data);
@@ -163,7 +163,7 @@ function populateItems() {
 
 function loadoutForm() {
     type = "GET";
-    url = "http://localhost:9000/armour";
+    url = "http://35.189.78.116:9000/armour";
     makeRequest("", type, url)
         .then((data) => {
             //console.log("It worked", data)
@@ -181,7 +181,7 @@ function loadoutForm() {
 
 function populateLoadout(){
     type = "GET";
-    url = "http://localhost:9000/loadout"
+    url = "http://35.189.78.116:9000/loadout"
     makeRequest("",type,url)
         .then((data) => {
             //console.log("It worked",data);
@@ -204,7 +204,7 @@ function populateLoadout(){
 
 function populateLoadoutTable(){
     type = "GET";
-    url = "http://localhost:9000/loadout";
+    url = "http://35.189.78.116:9000/loadout";
     makeRequest("",type,url)
         .then((data) => {
             data = (JSON.parse(data));
@@ -220,7 +220,7 @@ function populateLoadoutTable(){
         })
         //itterate build table not sure how im tired
     type = "GET";
-    url = "http://localhost:9000/armour"
+    url = "http://35.189.78.116:9000/armour"
     makeRequest("",type,url)
         .then((data) => {
             data = (JSON.parse(data));
