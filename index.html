@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+    crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="style.css">
+
+  <title>Item Manager</title>
+</head>
+
+<body onload="populateItems()">
+
+  <div class="container">
+    <div class="row ml-0">
+      <h1>Item Manager</h1>
+    </div>
+
+    <div class="row ml-0 pd-3 pt-2">
+      <div class="dropdown col-3">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="class-selector" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">
+          Select Class
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="Titan.html">Titan</a>
+          <a class="dropdown-item" href="Warlock.html">Warlock</a>
+          <a class="dropdown-item" href="Hunter.html">Hunter</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="row pt-3 input-group">
+      <table class="table table-dark" id="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Item Name</th>
+            <th scope="col">Light Level</th>
+            <th scope="col">Slot</th>
+            <th scope="col">Class</th>
+            <th scope="col">Loadout</th>
+          </tr>
+        </thead>
+        <tbody id="invTable">
+        </tbody>
+      </table>
+    </div>
+
+    <div class="row pt-4 form-control-lg mb-2 ml-0">
+      <p class="form-control-lg">Select Item</p>
+      <select id="itemNumber" class="dropdown-toggle form-control-lg">
+            <option value="n">Create New Item</option>
+        </select>
+    </div>
+
+    <div class="row pt-5 form-control-lg mt-3 ml-0">
+      <form method="post" onsubmit="return handleFormSubmit(this, 'http://35.189.78.116:9000/armour')">
+        <div class="col">
+          <p>Item Type</p>
+          <select id="charClass" class="form-control form-control-lg mb-1">
+              <option>Titan</option>
+              <option>Warlock</option>
+              <option>Hunter</option>
+            </select>
+          <p>Item Name</p>
+          <input type="text" class="form-control mb-1" id="name" placeholder="Item Name">
+          <p>Light Level</p>
+          <input type="number" class="form-control mb-1" id="light" placeholder="Light Level">
+          <p>Item Type</p>
+          <select id="slot" class="form-control form-control-lg mb-1">
+              <option>Helmet</option>
+              <option>Arm</option>
+              <option>Chest</option>
+              <option>Leg</option>
+              <option>Mark</option>
+            </select>
+          <p>Loadout Id</p>
+          <input type="number" class="form-control mb-1" id="loadoutId">
+          <p>Primary Perk</p>
+          <input type="text" class="form-control mb-1" id="perkOne" placeholder="Primary Perk">
+          <p>Secondary Perk</p>
+          <input type="text" class="form-control mb-2" id="perkTwo" placeholder="Secondary Perk">
+          <button type="submit" class="btn btn-outline-success col-12" id="submit">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="scripts.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
