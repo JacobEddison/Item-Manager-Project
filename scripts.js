@@ -42,7 +42,7 @@ function handleFormSubmit(form, url) {
         type = "POST";
     } else {
         type = "PUT";
-        url = url + "/" + itemSelect.value;
+        url = url + itemSelect.value;
         console.log(url);
     };
     console.log(type);
@@ -71,7 +71,7 @@ function loadoutFormSubmit(form, url) {
         type = "POST";
     } else {
         type = "PUT";
-        url = url + "/" + loadoutSelect.value;
+        url = url + loadoutSelect.value;
         console.log(url);
     };
     console.log(type);
@@ -116,7 +116,7 @@ function updateItemInLoadout(form, lid){
 
 function populateItems() {
     type = "GET";
-    url = "http://35.189.78.116:9000/armour";
+    url = "http://35.189.78.116:9000/armour/";
     makeRequest("", type, url)
         .then((data) => {
             //console.log("It Worked", data);
@@ -163,7 +163,7 @@ function populateItems() {
 
 function loadoutForm() {
     type = "GET";
-    url = "http://35.189.78.116:9000/armour";
+    url = "http://35.189.78.116:9000/armour/";
     makeRequest("", type, url)
         .then((data) => {
             //console.log("It worked", data)
@@ -181,7 +181,7 @@ function loadoutForm() {
 
 function populateLoadout(){
     type = "GET";
-    url = "http://35.189.78.116:9000/loadout"
+    url = "http://35.189.78.116:9000/loadout/"
     makeRequest("",type,url)
         .then((data) => {
             //console.log("It worked",data);
@@ -204,7 +204,7 @@ function populateLoadout(){
 
 function populateLoadoutTable(){
     type = "GET";
-    url = "http://35.189.78.116:9000/loadout";
+    url = "http://35.189.78.116:9000/loadout/";
     makeRequest("",type,url)
         .then((data) => {
             data = (JSON.parse(data));
@@ -220,7 +220,7 @@ function populateLoadoutTable(){
         })
         //itterate build table not sure how im tired
     type = "GET";
-    url = "http://35.189.78.116:9000/armour"
+    url = "http://35.189.78.116:9000/armour/"
     makeRequest("",type,url)
         .then((data) => {
             data = (JSON.parse(data));
