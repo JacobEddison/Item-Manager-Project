@@ -161,6 +161,30 @@ function populateItems() {
         });
 }
 
+function populateLoadouts(){
+    type = "GET";
+    url = "http://35.189.78.116:9000/loadout/";
+    makeRequest("",type,url)
+    .then((data) => {
+        data = JSON.parse(data);
+        for (let i in data){
+            var tr = document.createElement('tr');
+            tr.id = "row" + i;
+            document.getElementById("loadoutTable").appendChild(tr);
+            item = data[i].value;
+            url = url + item;
+            makeRequest("",type,url)
+            .then((data) => {
+                data = JSON.parse(data);
+                var td = document.createElement('td');
+                td.innerText = data.name;
+                document.getElementById("row"+i).appendChild(td);
+            }) 
+
+        }
+    })
+}
+
 function loadoutForm() {
     type = "GET";
     url = "http://35.189.78.116:9000/armour/";
@@ -179,7 +203,7 @@ function loadoutForm() {
         })
 }
 
-function populateLoadout(){
+function populateLoadoutDropdown(){
     type = "GET";
     url = "http://35.189.78.116:9000/loadout/"
     makeRequest("",type,url)
