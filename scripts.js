@@ -42,13 +42,11 @@ function handleFormSubmit(form, url) {
         }
     };
     if (itemSelect.value === "n") {
-        type = "POST";
+        let type = "POST";
     } else {
-        type = "PUT";
+        let type = "PUT";
         url = url + itemSelect.value;
-        console.log(url);
     };
-    console.log(type);
     makeRequest(formObject, type, url)
         .then(() => {
             console.log("it worked");
@@ -71,19 +69,17 @@ function loadoutFormSubmit(form, url) {
         }
     };
     if (loadoutSelect.value === "n") {
-        type = "POST";
+        let type = "POST";
     } else {
-        type = "PUT";
+        let type = "PUT";
         url = url + loadoutSelect.value;
-        console.log(url);
     };
-    console.log(type);
     makeRequest(formObject, type, url)
         .then((data) => {
             console.log("it worked 2", data);
             location.reload(true);
             data = JSON.parse(data);
-            lid = data.loadoutId;
+            let lid = data.loadoutId;
             updateItemInLoadout(form,lid);
         })
         .catch((error) => {
@@ -96,16 +92,13 @@ function loadoutFormSubmit(form, url) {
 function updateItemInLoadout(form, lid){
     for (let i of form.elements){
         if (i.value){
-            type = "GET";
-            url = "http://35.189.78.116:9000/armour/" + i.value;
-            console.log(i.value);
+            let type = "GET";
+            let url = "http://35.189.78.116:9000/armour/" + i.value;
             makeRequest("",type,url)
                 .then((data) => {
                     data = JSON.parse(data);
-                    console.log(data);
                     data.loadoutId = lid;
                     type = "PUT";
-                    console.log(data.loadoutId);
                     makeRequest(data,type,url)
                         .then((data) => {
                             console.log("It worked 3",data);
@@ -118,8 +111,8 @@ function updateItemInLoadout(form, lid){
 
 
 function populateItems() {
-    type = "GET";
-    url = "http://35.189.78.116:9000/armour/";
+    let type = "GET";
+    let url = "http://35.189.78.116:9000/armour/";
     makeRequest("", type, url)
         .then((data) => {
             //console.log("It Worked", data);
@@ -160,23 +153,22 @@ function populateItems() {
             }
         })
         .catch((error) => {
-            console.log("It Failed", error);
+            //console.log("It Failed", error);
         });
 }
 
 function populateLoadouts(){
-    type = "GET";
-    url = "http://35.189.78.116:9000/loadout/";
+    let type = "GET";
+    let url = "http://35.189.78.116:9000/loadout/";
     makeRequest("",type,url)
     .then((data) => {
         data = JSON.parse(data);
         for (let i in data){
-            var tr = document.createElement('tr');
+            var tr = document.createElement("tr");
             tr.id = "row" + i;
             document.getElementById("loadoutTable").appendChild(tr);
-            var th = document.createElement('th');
-            console.log(data);
-            var td = document.createElement('td');
+            var th = document.createElement("th");
+            var td = document.createElement("td");
             td.innerText = "Loadout " + data[i].id;
             document.getElementById("row"+i).appendChild(td);
             var light = 0;
@@ -184,7 +176,6 @@ function populateLoadouts(){
             delete data[i].id;
             for (var j in data[i]) {
                 let col = "";
-                console.log("hello")
                 if (data[i].hasOwnProperty(j)){
                     var itemValue = data[i][j];
                     console.log(itemValue);
@@ -258,8 +249,8 @@ function anotherMakeRequest(type, url, i, light){
 }
 
 function loadoutForm() {
-    type = "GET";
-    url = "http://35.189.78.116:9000/armour/";
+    let type = "GET";
+    let url = "http://35.189.78.116:9000/armour/";
     makeRequest("", type, url)
         .then((data) => {
             //console.log("It worked", data)
@@ -276,8 +267,8 @@ function loadoutForm() {
 }
 
 function populateLoadoutDropdown(){
-    type = "GET";
-    url = "http://35.189.78.116:9000/loadout/"
+    let type = "GET";
+    let url = "http://35.189.78.116:9000/loadout/"
     makeRequest("",type,url)
         .then((data) => {
             //console.log("It worked",data);
@@ -299,8 +290,8 @@ function populateLoadoutDropdown(){
 }
 
 function populateLoadoutTable(){
-    type = "GET";
-    url = "http://35.189.78.116:9000/loadout/";
+    let type = "GET";
+    let url = "http://35.189.78.116:9000/loadout/";
     makeRequest("",type,url)
         .then((data) => {
             data = (JSON.parse(data));
@@ -331,14 +322,12 @@ function populateLoadoutTable(){
 
 function deleteItem(item){
     var id = item.id;
-    console.log(id);
     type = "DELETE";
     url = "http://35.189.78.116:9000/armour/"+id;
-    console.log(item);
     makeRequest("",type,url)
     .then((data) => {
         console.log("nuyce", data);
-    })
+    });
 
 
 
@@ -346,10 +335,10 @@ function deleteItem(item){
 
 function deleteLoadout(loadout){
     var id = loadout.id;
-    type = "DELETE";
-    url = "http://35.189.78.116:9000/loadout/"+id;
+    let type = "DELETE";
+    let url = "http://35.189.78.116:9000/loadout/"+id;
     makeRequest("",type,url)
     .then(() => {
         console.log("nuyce");
-    })
+    });
 }
