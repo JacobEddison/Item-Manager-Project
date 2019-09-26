@@ -42,6 +42,7 @@
                             <th scope="col">Legs</th>
                             <th scope="col">Mark</th>
                             <th scope="col">Light Level</th>
+                            <th scope="col">Delete</th>
                         </tr>
                     </thead>
                     <tbody id="loadoutTable">
@@ -62,8 +63,8 @@
                 <div class="col-12">
                     <h2>Create Loadout</h2>
                 </div>
-            <form method="post" onsubmit="return loadoutFormSubmit(this,'http://35.189.78.116:9000/loadout/')">
-                <div class="pt-4 form-control ml-0">
+            <div>
+                <form method="post" onsubmit="return loadoutFormSubmit(this,'http://35.189.78.116:9000/loadout/')">
                     <p>Helmet</p>
                     <select type="number" id="helmetId" class="form-control form-control-lg">
                     </select>
@@ -80,8 +81,8 @@
                     <select type="number" id="markId" class="form-control form-control-lg mb-2">
                     </select>
                     <button type="submit" class="btn btn-outline-success col-12" id="submit">Submit</button>
-                </div>
-            </form>
+                </form>
+            </div>
             </div>
         </div>
     </div>

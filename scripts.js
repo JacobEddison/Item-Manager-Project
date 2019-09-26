@@ -5,7 +5,7 @@ function makeRequest(formObject, type, url) {
     return new Promise((resolve, reject) => {
         const xhr = new XMLHttpRequest();
         xhr.onload = () => {
-            if (xhr.status === 200 || xhr.status === 201) {
+            if (xhr.status === 200 || xhr.status === 201 || xhr.status === 202) {
                 resolve(xhr.response);
             }
             else {
@@ -24,6 +24,9 @@ function makeRequest(formObject, type, url) {
             xhr.open(type, url);
             xhr.setRequestHeader("Content-Type", "application/json");
             xhr.send(JSON.stringify(formObject));
+        } else if (type === "DELETE") {
+            xhr.open(type, url);
+            xhr.send();
         }
         //console.log(JSON.stringify(formObject));
     });
@@ -130,7 +133,7 @@ function populateItems() {
                 tr.id = "row" + i;
                 document.getElementById("invTable").appendChild(tr);
                 var th = document.createElement('th');
-                for (j = 0; j < 6; j++) {
+                for (j = 0; j < 5; j++) {
                     var td = document.createElement('td');
                     switch (j) {
                         case 0:
@@ -148,12 +151,12 @@ function populateItems() {
                         case 4:
                             td.innerText = data[i].charClass;
                             break;
-                        case 5:
-                            td.innerText = data[i].loadoutId;
-                            break;
                     }
                     document.getElementById("row" + i).appendChild(td);
                 }
+                var td = document.createElement('td');
+                td.innerHTML = "<button type='button' id='"+data[i].id+"' class='btn btn-primary' onclick=deleteItem(this)>Delete</button>";
+                document.getElementById("row"+i).appendChild(td);
             }
         })
         .catch((error) => {
@@ -171,18 +174,87 @@ function populateLoadouts(){
             var tr = document.createElement('tr');
             tr.id = "row" + i;
             document.getElementById("loadoutTable").appendChild(tr);
-            item = data[i].value;
-            url = url + item;
-            makeRequest("",type,url)
-            .then((data) => {
-                data = JSON.parse(data);
-                var td = document.createElement('td');
-                td.innerText = data.name;
-                document.getElementById("row"+i).appendChild(td);
-            }) 
+            var th = document.createElement('th');
+            console.log(data);
+            var td = document.createElement('td');
+            td.innerText = "Loadout " + data[i].id;
+            document.getElementById("row"+i).appendChild(td);
+            var light = 0;
+            var backupId = data[i].id;
+            delete data[i].id;
+            for (var j in data[i]) {
+                let col = "";
+                console.log("hello")
+                if (data[i].hasOwnProperty(j)){
+                    var itemValue = data[i][j];
+                    console.log(itemValue);
+                    url = "http://35.189.78.116:9000/armour/" + itemValue;
+                    anotherMakeRequest(type, url, i, light)
+                    .then((data) => {
+                        console.log("nuyce");
+                    })
+                    .catch((error) => {
+                        console.log("error");
+                    })
+                }
+            }
+            let lightLevel = light/5;
+            var row = document.getElementById("row"+i);
+            var c6 = row.insertCell(6);
+            c6.innerText = lightLevel;
+            var c7 = row.insertCell(7);
+            c7.innerHTML = "<button type='button' id='"+backupId+"' class='btn btn-primary' onclick=deleteLoadout(this)>Delete</button>";
+            light = 0;
+            
 
         }
     })
+}
+
+function anotherMakeRequest(type, url, i, light){
+    return new Promise((resolve, reject) => {
+    const xhr = new XMLHttpRequest();
+    xhr.open(type, url);
+    xhr.send();
+    xhr.onload = () => {
+        callback(xhr);
+        if (xhr.status === 200 || xhr.status === 201 || xhr.status === 202) {
+            data = JSON.parse(xhr.response);
+            var row = document.getElementById("row"+i);
+            switch (data.slot) {
+                case "Helmet":
+                    var cell = row.insertCell(1);
+                    break;
+                case "Arm":
+                    var cell = row.insertCell(2);
+                    break;
+                case "Chest":
+                    var cell = row.insertCell(3);
+                    break;
+                case "Leg":
+                    var cell = row.insertCell(4);
+                    break;
+                case "Mark":
+                    var cell = row.insertCell(5);
+                    break;
+            }
+            cell.innerText = data.name;
+            // col = data.name;
+            // console.log(col);
+            light = light + data.light;
+            // var td = document.createElement('td');
+            // td.innerText = col;
+            // console.log(col);
+            // document.getElementById("row"+i).appendChild(td);
+            resolve();
+        }
+        else {
+            reject(xhr.status);
+            return xhr.status;
+        }
+    }
+    })
+
 }
 
 function loadoutForm() {
@@ -257,14 +329,27 @@ function populateLoadoutTable(){
         })
 }
 
-function editItem() {
-    //use button and form submit
+function deleteItem(item){
+    var id = item.id;
+    console.log(id);
+    type = "DELETE";
+    url = "http://35.189.78.116:9000/armour/"+id;
+    console.log(item);
+    makeRequest("",type,url)
+    .then((data) => {
+        console.log("nuyce", data);
+    })
+
+
+
 }
 
-function selectLoadout(num) {
-    //console.log(num);
-    //document.getElementById(num)
-    //Build table on page for specific loadout
-    //use hidden vars for class specific loadouts store all in 1 table
+function deleteLoadout(loadout){
+    var id = loadout.id;
+    type = "DELETE";
+    url = "http://35.189.78.116:9000/loadout/"+id;
+    makeRequest("",type,url)
+    .then(() => {
+        console.log("nuyce");
+    })
 }
-
