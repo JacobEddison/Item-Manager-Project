@@ -189,12 +189,13 @@ function populateLoadouts(){
                     })
                 }
             }
+            var td = document.createElement("td");
             let lightLevel = light/5;
-            var row = document.getElementById("row"+i);
-            var c6 = row.insertCell(6);
-            c6.innerText = lightLevel;
-            var c7 = row.insertCell(7);
-            c7.innerHTML = "<button type='button' id='"+backupId+"' class='btn btn-primary' onclick=deleteLoadout(this)>Delete</button>";
+            td.innerText = lightLevel;
+            document.getElementById("row"+i).appendChild(td);
+            var td = document.createElement("td");
+            td.innerHTML = "<button type='button' id='"+backupId+"' class='btn btn-primary' onclick=deleteLoadout(this)>Delete</button>";
+            document.getElementById("row"+i).appendChild(td);
             light = 0;
             
 
@@ -327,6 +328,7 @@ function deleteItem(item){
     makeRequest("",type,url)
     .then((data) => {
         console.log("nuyce", data);
+        location.reload(true);
     });
 
 
@@ -340,6 +342,7 @@ function deleteLoadout(loadout){
     makeRequest("",type,url)
     .then(() => {
         console.log("nuyce");
+        location.reload(true);
     });
 }
 
